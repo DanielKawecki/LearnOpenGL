@@ -18,51 +18,50 @@ Camera camera(glm::vec3(0.f, 0.f, 3.f), 2.5f, 0.1f);
 float lastX = 300, lastY = 300;
 bool first = true;
 
-// Colors
-glm::vec3 coral(1.0f, 0.5f, 0.31f);
+glm::vec3 lightPosition = glm::vec3(0.f, 4.f, 0.f);
 
 float cube[] = {
-	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+	-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+	 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+	 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+	 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+	-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+	-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+	-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+	 0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+	 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+	 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+	-0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+	-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
 
-	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+	-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+	-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+	-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+	-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+	-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+	-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
 
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+	 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+	 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+	 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+	 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+	 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
 
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+	 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+	 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+	 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+	-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+	-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
 
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+	-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+	 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+	 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+	 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+	-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+	-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
 };
 
 int success;
@@ -106,11 +105,11 @@ int main() {
 	// ##### Model vertices and stuff #####
 
 	float vertices[] = {
-		 // positions           // texture coords
-		 3.f, -1.5f, -3.f,      0.0f, 0.0f, // top right
-		 3.f, -1.5f,  3.f,      0.0f, 3.f, // bottom right
-		-3.f, -1.5f,  3.f,      3.f, 3.f, // bottom left
-		-3.f, -1.5f, -3.f,      3.f, 0.0f  // top left 
+		 // positions  
+		 3.f, -1.5f, -3.f,    
+		 3.f, -1.5f,  3.f,      
+		-3.f, -1.5f,  3.f,    
+		-3.f, -1.5f, -3.f,   
 	};
 
 	unsigned int indices[] = {
@@ -186,11 +185,19 @@ int main() {
 	// Shader instance
 	Shader myShader("shaders/vertex.glsl", "shaders/fragment.glsl");
 	myShader.use();
-	myShader.setInt("texture1", 0);
+	//myShader.setInt("texture1", 0);
 	//myShader.setInt("texture2", 1);
 	myShader.setMat4("model", model);
 	myShader.setMat4("view", view);
 	myShader.setMat4("projection" ,projection);
+	myShader.setVec3("lightPosition", lightPosition);
+
+	// Second shader for light source
+	Shader lightShader("shaders/vertex.glsl", "shaders/light.glsl");
+	lightShader.use();
+	lightShader.setMat4("model", model);
+	lightShader.setMat4("view", view);
+	lightShader.setMat4("projection", projection);
 
 	// Generating VAO and VBO buffers
 	glGenVertexArrays(2, VAOs);
@@ -203,9 +210,9 @@ int main() {
 	glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(cube), cube, GL_STATIC_DRAW);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
 	// Plane with bricks
@@ -216,15 +223,15 @@ int main() {
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	glBindVertexArray(VAOs[1]);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-	glEnableVertexAttribArray(1);
 
 	// Setting the clear color
-	glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
-	
+	//glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+	glClearColor(0.f, 0.f, 0.f, 1.0f);
+
 	// ##### Main program loop #####
+	float radius = 8.f;
 
 	while (!glfwWindowShouldClose(window)) {
 		processInput(window);
@@ -235,28 +242,47 @@ int main() {
 		view = camera.getViewMatrix();
 		
 		glm::mat4 model = glm::mat4(1.f);
-		model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
+		//model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.25, 0.25, 0.25));
+		lightPosition.x = sin((float)glfwGetTime()) * radius;
+		lightPosition.z = cos((float)glfwGetTime()) * radius;
+		model = glm::translate(model, lightPosition);
 
-		myShader.use();
-		myShader.setMat4("model", model);
-		myShader.setMat4("view", view);
-	
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, texture2);
-		/*glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, texture2);*/
-		
+		// Light
+
+		lightShader.use();
+		lightShader.setMat4("model", model);
+		lightShader.setMat4("view", view);
+		lightShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+
 		glBindVertexArray(VAOs[0]);
 		glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 
+		// Object
+
 		glBindTexture(GL_TEXTURE_2D, texture1);
 		glBindVertexArray(VAOs[1]);
 		glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
+		myShader.use();
 		myShader.setMat4("model", glm::mat4(1.f));
+		myShader.setMat4("view", view);
+		myShader.setVec3("objectColor", 0.45f, 0.f, 1.f);
+		myShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+		myShader.setVec3("lightPos", lightPosition);
+		myShader.setVec3("viewPos", camera.getPosition());
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		//glm::vec3 pos = camera.getPosition();
+		//std::cout << pos.x << " " << pos.y << " " << pos.z << std::endl;
+
+		model = glm::mat4(1.f);
+		//model = glm::translate(model, glm::vec3(-2.f, -1.f, -1.f));
+		myShader.setMat4("model", model);
+		glBindVertexArray(VAOs[0]);
+		glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		glfwPollEvents();
 		glfwSwapBuffers(window);

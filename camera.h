@@ -65,6 +65,10 @@ public:
 		return glm::lookAt(position, position + front, up);
 	}
 
+	glm::vec3 getPosition() const {
+		return position;
+	}
+
 private:
 	void updateVectors() {
 		glm::vec3 front_ = glm::vec3(0.f, 0.f, 0.f);
