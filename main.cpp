@@ -192,6 +192,19 @@ int main() {
 	myShader.setMat4("projection" ,projection);
 	myShader.setVec3("lightPosition", lightPosition);
 
+	myShader.setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
+	myShader.setVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
+	myShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
+	myShader.setFloat("material.shininess", 32.0f);
+
+	glm::vec3 ambient = glm::vec3(0.1f);
+	glm::vec3 diffuse = glm::vec3(0.5f);
+	glm::vec3 specular = glm::vec3(1.f);
+
+	myShader.setVec3("light.ambient", ambient);
+	myShader.setVec3("light.diffuse", diffuse);
+	myShader.setVec3("light.specular", specular);
+
 	// Second shader for light source
 	Shader lightShader("shaders/vertex.glsl", "shaders/light.glsl");
 	lightShader.use();
@@ -246,6 +259,7 @@ int main() {
 		model = glm::scale(model, glm::vec3(0.25, 0.25, 0.25));
 		lightPosition.x = sin((float)glfwGetTime()) * radius;
 		lightPosition.z = cos((float)glfwGetTime()) * radius;
+		//lightPosition.x = radius;
 		model = glm::translate(model, lightPosition);
 
 		// Light
@@ -268,8 +282,8 @@ int main() {
 		myShader.use();
 		myShader.setMat4("model", glm::mat4(1.f));
 		myShader.setMat4("view", view);
-		myShader.setVec3("objectColor", 0.45f, 0.f, 1.f);
-		myShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+		//myShader.setVec3("objectColor", 0.45f, 0.f, 1.f);
+		//myShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
 		myShader.setVec3("lightPos", lightPosition);
 		myShader.setVec3("viewPos", camera.getPosition());
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
