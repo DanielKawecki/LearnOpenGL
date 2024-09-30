@@ -8,7 +8,9 @@ enum camera_movement {
 	FORWARD,
 	BACKWARD,
 	LEFT,
-	RIGHT
+	RIGHT,
+	UP,
+	DOWN
 };
 
 class Camera {
@@ -20,6 +22,7 @@ private:
 
 	glm::vec3 position = glm::vec3(0.f, 0.f, 3.f);
 	glm::vec3 front = glm::vec3(0.f, 0.f, -1.f);
+	glm::vec3 flat_front = glm::vec3(0.f, 0.f, -1.f);
 	glm::vec3 up = glm::vec3(0.f, 1.f, 0.f);
 	glm::vec3 right = glm::vec3(1.f, 0.f, 0.f);
 	glm::vec3 world_up = glm::vec3(0.f, 1.f, 0.f);
@@ -37,13 +40,17 @@ public:
 		float velocity = speed * delta_time;
 
 		if (direction == FORWARD)
-			position += front * velocity;
+			position += flat_front * velocity;
 		if (direction == BACKWARD)
-			position -= front * velocity;
+			position -= flat_front * velocity;
 		if (direction == LEFT)
 			position -= right * velocity;
 		if (direction == RIGHT)
 			position += right * velocity;
+		if (direction == UP)
+			position.y += velocity;
+		if (direction == DOWN)
+			position.y -= velocity;
 	}
 
 	void processMouse(float xoffset, float yoffset) {
@@ -73,8 +80,10 @@ private:
 	void updateVectors() {
 		glm::vec3 front_ = glm::vec3(0.f, 0.f, 0.f);
 		front_.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-		front_.y = sin(glm::radians(pitch));
 		front_.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+		flat_front = glm::normalize(front_);
+
+		front_.y = sin(glm::radians(pitch));
 		front = glm::normalize(front_);
 
 		right = glm::normalize(glm::cross(front, world_up));

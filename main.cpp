@@ -182,6 +182,8 @@ int main() {
 	glm::mat4 projection;
 	projection = glm::perspective(glm::radians(60.f), (float)WIDTH / (float)HEIGHT, 0.1f, 100.f);
 
+	glm::vec3 light_color = glm::vec3(1.f, 1.f, 1.f);
+
 	// Shader instance
 	Shader myShader("shaders/vertex.glsl", "shaders/fragment.glsl");
 	myShader.use();
@@ -192,14 +194,14 @@ int main() {
 	myShader.setMat4("projection" ,projection);
 	myShader.setVec3("lightPosition", lightPosition);
 
-	myShader.setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
-	myShader.setVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
-	myShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
-	myShader.setFloat("material.shininess", 32.0f);
+	myShader.setVec3("material.ambient", 0.24725, 0.1995, 0.0745);
+	myShader.setVec3("material.diffuse", 0.75164, 0.60648, 0.22648);
+	myShader.setVec3("material.specular", 0.628281, 0.555802, 0.366065);
+	myShader.setFloat("material.shininess", 0.4 * 128.f);
 
-	glm::vec3 ambient = glm::vec3(0.1f);
-	glm::vec3 diffuse = glm::vec3(0.5f);
-	glm::vec3 specular = glm::vec3(1.f);
+	glm::vec3 ambient = 0.1f * light_color;
+	glm::vec3 diffuse = 0.5f * light_color;
+	glm::vec3 specular = 1.f * light_color;
 
 	myShader.setVec3("light.ambient", ambient);
 	myShader.setVec3("light.diffuse", diffuse);
@@ -252,51 +254,58 @@ int main() {
 		// Rendering
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		// Light
+
 		view = camera.getViewMatrix();
-		
 		glm::mat4 model = glm::mat4(1.f);
-		//model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.25, 0.25, 0.25));
 		lightPosition.x = sin((float)glfwGetTime()) * radius;
 		lightPosition.z = cos((float)glfwGetTime()) * radius;
-		//lightPosition.x = radius;
 		model = glm::translate(model, lightPosition);
 
-		// Light
+		//light_color.x = sin(glfwGetTime() * 2.f);
+		//light_color.y = sin(glfwGetTime() * 0.7f);
+		//light_color.z = sin(glfwGetTime() * 1.3f);
 
 		lightShader.use();
 		lightShader.setMat4("model", model);
 		lightShader.setMat4("view", view);
-		lightShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+		lightShader.setVec3("lightColor", light_color);
 
 		glBindVertexArray(VAOs[0]);
 		glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-
 		// Object
+
+		myShader.use();
+		myShader.setMat4("model", glm::mat4(1.f));
+		myShader.setMat4("view", view);
+		myShader.setVec3("lightPos", lightPosition);
+		myShader.setVec3("viewPos", camera.getPosition());
+		
+		glm::vec3 ambient = 1.f * light_color;
+		glm::vec3 diffuse = 1.f * light_color;
+		glm::vec3 specular = 1.f * light_color;
+
+		myShader.setVec3("light.ambient", ambient);
+		myShader.setVec3("light.diffuse", diffuse);
+		myShader.setVec3("light.specular", specular);
 
 		glBindTexture(GL_TEXTURE_2D, texture1);
 		glBindVertexArray(VAOs[1]);
 		glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
-		myShader.use();
-		myShader.setMat4("model", glm::mat4(1.f));
-		myShader.setMat4("view", view);
-		//myShader.setVec3("objectColor", 0.45f, 0.f, 1.f);
-		//myShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
-		myShader.setVec3("lightPos", lightPosition);
-		myShader.setVec3("viewPos", camera.getPosition());
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-		//glm::vec3 pos = camera.getPosition();
-		//std::cout << pos.x << " " << pos.y << " " << pos.z << std::endl;
 
 		model = glm::mat4(1.f);
-		//model = glm::translate(model, glm::vec3(-2.f, -1.f, -1.f));
 		myShader.setMat4("model", model);
 		glBindVertexArray(VAOs[0]);
 		glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		// Plane
+		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
 
 		glfwPollEvents();
 		glfwSwapBuffers(window);
@@ -355,5 +364,9 @@ void processInput(GLFWwindow* window) {
 		camera.processKeyboard(LEFT, deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		camera.processKeyboard(RIGHT, deltaTime);
+	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+		camera.processKeyboard(UP, deltaTime);
+	if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+		camera.processKeyboard(DOWN, deltaTime);
 
 }
