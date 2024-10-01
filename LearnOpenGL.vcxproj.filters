@@ -43,6 +43,15 @@
     <Image Include="resources\face.png">
       <Filter>Pliki zasobów</Filter>
     </Image>
+    <Image Include="resources\brick_specular.jpg">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="resources\wood_specular.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="resources\wood.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\fragment.glsl" />
