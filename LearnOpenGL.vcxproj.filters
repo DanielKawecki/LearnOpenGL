@@ -35,6 +35,9 @@
     <ClInclude Include="stb_image.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
+    <ClInclude Include="importer.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\brick.jpg">
@@ -57,5 +60,7 @@
     <None Include="shaders\fragment.glsl" />
     <None Include="shaders\vertex.glsl" />
     <None Include="shaders\light.glsl" />
+    <None Include="shaders\vertex_model.glsl" />
+    <None Include="shaders\fragment_model.glsl" />
   </ItemGroup>
 </Project>
