@@ -60,13 +60,13 @@ int main() {
 	}
 
 	glEnable(GL_DEPTH_TEST);
-	stbi_set_flip_vertically_on_load(true);
+	//stbi_set_flip_vertically_on_load(true);
 
 	Shader shader("shaders/vertex_model.glsl", "shaders/fragment_model.glsl");
-	Model backpack("resources/backpack/backpack.obj");
+	Model backpack("resources/m4/m4a1_s.fbx");
 
 	// Setting the clear color
-	glClearColor(0.f, 0.f, 0.f, 1.0f);
+	glClearColor(1.f, 0.f, 0.f, 1.0f);
 
 
 	//  ██████  ███████ ███    ██ ██████  ███████ ██████  ██ ███    ██  ██████  
@@ -85,8 +85,9 @@ int main() {
 		shader.use();
 
 		glm::mat4 model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.f, 0.f, 0.f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		model = glm::translate(model, glm::vec3(0.5f, 0.f, -0.5f));
+		model = glm::rotate(model, glm::radians(-90.f), glm::vec3(0.f, 1.f, 0.f));
+		model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 		shader.setMat4("model", model);
 
 		glm::mat4 view = camera.getViewMatrix(); 
