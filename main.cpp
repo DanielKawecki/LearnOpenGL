@@ -63,7 +63,7 @@ int main() {
 	//stbi_set_flip_vertically_on_load(true);
 
 	Shader shader("shaders/vertex_model.glsl", "shaders/fragment_model.glsl");
-	Model backpack("resources/m4/m4a1_s.fbx");
+	Model backpack("resources/m4a1/m4.obj");
 
 	// Setting the clear color
 	glClearColor(1.f, 0.f, 0.f, 1.0f);
@@ -87,7 +87,7 @@ int main() {
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.5f, 0.f, -0.5f));
 		model = glm::rotate(model, glm::radians(-90.f), glm::vec3(0.f, 1.f, 0.f));
-		model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+		model = glm::scale(model, glm::vec3(10.f, 10.f, 10.f));
 		shader.setMat4("model", model);
 
 		glm::mat4 view = camera.getViewMatrix(); 
@@ -97,10 +97,11 @@ int main() {
 		shader.setMat4("projection", projection);
 
 		// Lighting
-		shader.setVec3("dirLight.direction", 0.f, -1.f, 0.f);
-		shader.setVec3("dirLight.ambient", 0.2f, 0.2f, 0.2f);
-		shader.setVec3("dirLight.diffuse", 0.5f, 0.5f, 0.5f);
-		shader.setVec3("dirLight.specular", 1.f, 1.f, 1.f);
+		shader.setVec3("light.direction", 0.f, -1.f,(float)sin(glfwGetTime()));
+		shader.setVec3("light.ambient", 0.05f, 0.05f, 0.05f);
+		shader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
+		shader.setVec3("light.specular", 1.f, 1.f, 1.f);
+		shader.setVec3("viewPos", camera.getPosition());
 
 		backpack.draw(shader);
 
