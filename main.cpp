@@ -97,6 +97,7 @@ int main() {
 		shader.setMat4("projection", projection);
 
 		// Lighting
+		shader.setFloat("material.shininess", 64.0);
 		shader.setVec3("light.direction", 0.f, -1.f,(float)sin(glfwGetTime()));
 		shader.setVec3("light.ambient", 0.05f, 0.05f, 0.05f);
 		shader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
