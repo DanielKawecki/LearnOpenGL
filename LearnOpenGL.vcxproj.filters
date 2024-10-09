@@ -66,8 +66,6 @@
     <None Include="shaders\vertex_model.glsl" />
     <None Include="shaders\fragment_model.glsl" />
     <None Include="resources\m4a1\m4.mtl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="resources\m4a1\m4.obj" />
+    <None Include="shaders\wireframe.glsl" />
   </ItemGroup>
 </Project>

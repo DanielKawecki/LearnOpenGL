@@ -72,8 +72,7 @@ vec3 ComputeDirLight(DirLight light, vec3 normal, vec3 viewDir) {
 
 }
 
-vec3 ComputePointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
-{
+vec3 ComputePointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
     vec3 lightDir = normalize(light.position - fragPos);
     
     float diff = max(dot(normal, lightDir), 0.0);

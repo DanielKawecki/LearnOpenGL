@@ -162,9 +162,7 @@
     <None Include="shaders\light.glsl" />
     <None Include="shaders\vertex.glsl" />
     <None Include="shaders\vertex_model.glsl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="resources\m4a1\m4.obj" />
+    <None Include="shaders\wireframe.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
