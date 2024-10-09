@@ -151,15 +151,20 @@
     <Image Include="resources\brick.jpg" />
     <Image Include="resources\brick_specular.jpg" />
     <Image Include="resources\face.png" />
+    <Image Include="resources\m4a1\noodas.png" />
     <Image Include="resources\wood.png" />
     <Image Include="resources\wood_specular.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="resources\m4a1\m4.mtl" />
     <None Include="shaders\fragment.glsl" />
     <None Include="shaders\fragment_model.glsl" />
     <None Include="shaders\light.glsl" />
     <None Include="shaders\vertex.glsl" />
     <None Include="shaders\vertex_model.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="resources\m4a1\m4.obj" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

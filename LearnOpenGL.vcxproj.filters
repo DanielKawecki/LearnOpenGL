@@ -55,6 +55,9 @@
     <Image Include="resources\wood.png">
       <Filter>Pliki zasobów</Filter>
     </Image>
+    <Image Include="resources\m4a1\noodas.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\fragment.glsl" />
@@ -62,5 +65,9 @@
     <None Include="shaders\light.glsl" />
     <None Include="shaders\vertex_model.glsl" />
     <None Include="shaders\fragment_model.glsl" />
+    <None Include="resources\m4a1\m4.mtl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="resources\m4a1\m4.obj" />
   </ItemGroup>
 </Project>
