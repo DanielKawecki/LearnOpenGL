@@ -149,6 +149,7 @@ int main() {
 		wireframe_shader.setMat4("projection", projection);
 		wireframe_shader.setVec3("viewPos", camera.getPosition());
 
+		material_shader.setMat4("model", model);
 		m4a1.draw(material_shader);
 
 		// Light cube
