@@ -15,27 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="glad.c">
+    <ClCompile Include="src\glad.c">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src\stb.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="stb.cpp">
+    <ClCompile Include="src\main.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shader.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="shader.h">
-      <Filter>Pliki źródłowe</Filter>
-    </ClInclude>
-    <ClInclude Include="camera.h">
-      <Filter>Pliki źródłowe</Filter>
-    </ClInclude>
-    <ClInclude Include="stb_image.h">
+    <ClInclude Include="src\stb_image.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="importer.h">
+    <ClInclude Include="src\shader.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>
@@ -55,17 +52,15 @@
     <Image Include="resources\wood.png">
       <Filter>Pliki zasobów</Filter>
     </Image>
-    <Image Include="resources\m4a1\noodas.png">
+    <Image Include="res\m4a1\noodas.png">
       <Filter>Pliki zasobów</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\fragment.glsl" />
-    <None Include="shaders\vertex.glsl" />
-    <None Include="shaders\light.glsl" />
     <None Include="shaders\vertex_model.glsl" />
     <None Include="shaders\fragment_model.glsl" />
-    <None Include="resources\m4a1\m4.mtl" />
-    <None Include="shaders\wireframe.glsl" />
+    <None Include="res\m4a1\m4.mtl" />
+    <None Include="res\shaders\vertex.glsl" />
+    <None Include="res\shaders\fragment.glsl" />
   </ItemGroup>
 </Project>

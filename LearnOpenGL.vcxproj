@@ -141,32 +141,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="glad.c" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="stb.cpp" />
+    <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\shader.cpp" />
+    <ClCompile Include="src\stb.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="camera.h" />
-    <ClInclude Include="importer.h" />
-    <ClInclude Include="shader.h" />
-    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="src\shader.h" />
+    <ClInclude Include="src\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\brick.jpg" />
     <Image Include="resources\brick_specular.jpg" />
     <Image Include="resources\face.png" />
-    <Image Include="resources\m4a1\noodas.png" />
+    <Image Include="res\m4a1\noodas.png" />
     <Image Include="resources\wood.png" />
     <Image Include="resources\wood_specular.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\m4a1\m4.mtl" />
-    <None Include="shaders\fragment.glsl" />
+    <None Include="res\m4a1\m4.mtl" />
+    <None Include="res\shaders\fragment.glsl" />
+    <None Include="res\shaders\vertex.glsl" />
     <None Include="shaders\fragment_model.glsl" />
-    <None Include="shaders\light.glsl" />
-    <None Include="shaders\vertex.glsl" />
     <None Include="shaders\vertex_model.glsl" />
-    <None Include="shaders\wireframe.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
